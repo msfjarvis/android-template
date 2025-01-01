@@ -10,5 +10,4 @@ plugins {
   id("dev.msfjarvis.kotlin-common")
   alias(libs.plugins.dependencyAnalysis)
   alias(libs.plugins.gradle.versions)
-  alias(libs.plugins.invert)
 }
