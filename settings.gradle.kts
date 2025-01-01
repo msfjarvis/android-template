@@ -83,3 +83,5 @@ dependencyResolutionManagement {
 rootProject.name = "Android_Template"
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+include("android")
