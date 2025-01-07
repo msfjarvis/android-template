@@ -10,7 +10,7 @@ kotlinResult = "2.0.1"
 leakcanary = "3.0-alpha-8"
 lifecycle = "2.9.0-alpha08"
 navigation = "2.9.0-alpha04"
-serialization = "1.7.3"
+serialization = "1.8.0"
 sqldelight = "2.0.2"
 whetstone = "0.9.0-beta02"
 
