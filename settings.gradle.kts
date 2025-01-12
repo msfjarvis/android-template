@@ -1,5 +1,5 @@
 /*
- * Copyright © 2021-2024 Harsh Shandilya.
+ * Copyright © 2024-2025 Harsh Shandilya.
  * Use of this source code is governed by an MIT-style
  * license that can be found in the LICENSE file or at
  * https://opensource.org/licenses/MIT.
@@ -23,7 +23,10 @@ pluginManagement {
       forRepository { gradlePluginPortal() }
       filter {
         includeModule("com.github.ben-manes", "gradle-versions-plugin")
-        includeModule("com.github.ben-manes.versions", "com.github.ben-manes.versions.gradle.plugin")
+        includeModule(
+          "com.github.ben-manes.versions",
+          "com.github.ben-manes.versions.gradle.plugin",
+        )
         includeModule("org.gradle.android.cache-fix", "org.gradle.android.cache-fix.gradle.plugin")
         includeModule("gradle.plugin.org.gradle.android", "android-cache-fix-gradle-plugin")
         includeModule("dev.iurysouza.modulegraph", "dev.iurysouza.modulegraph.gradle.plugin")
