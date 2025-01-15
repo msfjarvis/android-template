@@ -15,7 +15,7 @@ sqldelight = "2.0.2"
 whetstone = "0.9.0-beta02"
 
 [libraries]
-androidx-activity-compose = "androidx.activity:activity-compose:1.10.0-rc01"
+androidx-activity-compose = "androidx.activity:activity-compose:1.10.0"
 androidx-compose-animation = { module = "androidx.compose.animation:animation" }
 androidx-compose-bom = "androidx.compose:compose-bom-alpha:2024.12.01"
 androidx-compose-foundation = { module = "androidx.compose.foundation:foundation" }
