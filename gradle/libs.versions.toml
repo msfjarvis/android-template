@@ -8,14 +8,14 @@ junit = "5.12.0"
 kotlin = "2.1.10"
 kotlinResult = "2.0.1"
 leakcanary = "3.0-alpha-8"
-lifecycle = "2.9.0-alpha10"
-navigation = "2.9.0-alpha06"
+lifecycle = "2.9.0-alpha11"
+navigation = "2.9.0-alpha07"
 serialization = "1.8.0"
 sqldelight = "2.0.2"
 whetstone = "0.9.0-beta02"
 
 [libraries]
-androidx-activity-compose = "androidx.activity:activity-compose:1.10.0"
+androidx-activity-compose = "androidx.activity:activity-compose:1.10.1"
 androidx-compose-animation = { module = "androidx.compose.animation:animation" }
 androidx-compose-bom = "androidx.compose:compose-bom-alpha:2025.02.00"
 androidx-compose-foundation = { module = "androidx.compose.foundation:foundation" }
@@ -33,7 +33,7 @@ androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling
 androidx-compose-ui-unit = { module = "androidx.compose.ui:ui-unit" }
 androidx-compose-ui-util = { module = "androidx.compose.ui:ui-util" }
 androidx-core = "androidx.core:core:1.15.0"
-androidx-core-splashscreen = "androidx.core:core-splashscreen:1.2.0-alpha02"
+androidx-core-splashscreen = "androidx.core:core-splashscreen:1.2.0-beta01"
 androidx-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
 androidx-lint = "androidx.lint:lint-gradle:1.0.0-alpha03"
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
