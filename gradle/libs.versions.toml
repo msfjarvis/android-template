@@ -79,6 +79,6 @@ dependencyAnalysis = "com.autonomousapps.dependency-analysis:2.13.0"
 gradle-versions = "com.github.ben-manes.versions:0.52.0"
 kotlin-composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-licensee = "app.cash.licensee:1.12.0"
+licensee = "app.cash.licensee:1.13.0"
 navigation-safeargs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigation" }
 whetstone = { id = "dev.msfjarvis.whetstone", version.ref = "whetstone" }
