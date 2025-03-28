@@ -49,7 +49,7 @@ build-cachefix = "org.gradle.android.cache-fix:org.gradle.android.cache-fix.grad
 build-kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 build-semver = "com.github.zafarkhaja:java-semver:0.10.2"
 build-spotless = "com.diffplug.spotless:spotless-plugin-gradle:7.0.2"
-build-vcu = "nl.littlerobots.version-catalog-update:nl.littlerobots.version-catalog-update.gradle.plugin:0.8.5"
+build-vcu = "nl.littlerobots.version-catalog-update:nl.littlerobots.version-catalog-update.gradle.plugin:1.0.0"
 dagger = { module = "com.google.dagger:dagger", version.ref = "dagger" }
 dagger-compiler = { module = "com.google.dagger:dagger-compiler", version.ref = "dagger" }
 javax-inject = "javax.inject:javax.inject:1"
