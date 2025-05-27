@@ -29,10 +29,10 @@ class AndroidCommonPlugin : Plugin<Project> {
     project.configureSlimTests()
     project.pluginManager.apply(AndroidCacheFixPlugin::class)
     project.extensions.configure<BaseExtension> {
-      compileSdkVersion(35)
+      compileSdkVersion(36)
       defaultConfig {
         minSdk = 26
-        targetSdk = 35
+        targetSdk = 36
       }
 
       packagingOptions {
