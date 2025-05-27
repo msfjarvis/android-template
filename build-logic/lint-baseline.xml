@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<issues format="6" by="lint 8.7.3" type="baseline" client="gradle" dependencies="false" name="AGP (8.7.3)" variant="all" version="8.7.3">
+<issues format="6" by="lint 8.10.0" type="baseline" client="gradle" dependencies="false" name="AGP (8.10.0)" variant="all" version="8.10.0">
 
     <issue
         id="GradleProjectIsolation"
@@ -10,6 +10,17 @@
             file="src/main/kotlin/dev/msfjarvis/gradle/LintConfig.kt"
             line="51"
             column="33"/>
+    </issue>
+
+    <issue
+        id="InternalKgpApiUsage"
+        message="Avoid using internal Kotlin Gradle Plugin APIs"
+        errorLine1="import org.jetbrains.kotlin.gradle.internal.Kapt3GradleSubplugin"
+        errorLine2="~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="src/main/kotlin/dev/msfjarvis/gradle/KotlinKaptPlugin.kt"
+            line="13"
+            column="1"/>
     </issue>
 
 </issues>
