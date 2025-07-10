@@ -1,5 +1,5 @@
 [versions]
-agp = "8.11.0"
+agp = "8.11.1"
 android-junit5 = "1.13.1.0"
 androidx-test = "1.6.1"
 coroutines = "1.10.2"
