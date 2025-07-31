@@ -1,7 +1,7 @@
 [versions]
 agp = "8.11.1"
 android-junit5 = "1.13.1.0"
-androidx-test = "1.6.1"
+androidx-test = "1.7.0"
 coroutines = "1.10.2"
 dagger = "2.57"
 junit = "5.13.4"
@@ -39,10 +39,10 @@ androidx-lint = "androidx.lint:lint-gradle:1.0.0-alpha05"
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation" }
 androidx-profileinstaller = "androidx.profileinstaller:profileinstaller:1.4.1"
 androidx-test-core = { module = "androidx.test:core", version.ref = "androidx-test" }
-androidx-test-espresso-core = "androidx.test.espresso:espresso-core:3.6.1"
-androidx-test-ext-junit = "androidx.test.ext:junit:1.2.1"
+androidx-test-espresso-core = "androidx.test.espresso:espresso-core:3.7.0"
+androidx-test-ext-junit = "androidx.test.ext:junit:1.3.0"
 androidx-test-rules = { module = "androidx.test:rules", version.ref = "androidx-test" }
-androidx-test-runner = "androidx.test:runner:1.6.2"
+androidx-test-runner = "androidx.test:runner:1.7.0"
 androidx-test-uiautomator = "androidx.test.uiautomator:uiautomator:2.4.0-alpha05"
 build-agp = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 build-cachefix = "org.gradle.android.cache-fix:org.gradle.android.cache-fix.gradle.plugin:3.0.1"
