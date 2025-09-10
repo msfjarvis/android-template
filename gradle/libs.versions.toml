@@ -68,7 +68,7 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 leakcanary-android-test = { module = "com.squareup.leakcanary:leakcanary-android-test", version.ref = "leakcanary" }
 slack-compose-lints = "com.slack.lint.compose:compose-lint-checks:1.4.2"
 slack-lints = "com.slack.lint:slack-lint-checks:0.11.0"
-truth = "com.google.truth:truth:1.4.4"
+truth = "com.google.truth:truth:1.4.5"
 
 [plugins]
 android-junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "android-junit5" }
