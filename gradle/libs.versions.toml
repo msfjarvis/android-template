@@ -74,7 +74,7 @@ truth = "com.google.truth:truth:1.4.5"
 android-junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "android-junit5" }
 android-lint = { id = "com.android.lint", version.ref = "agp" }
 android-test = { id = "com.android.test", version.ref = "agp" }
-anvil = "com.squareup.anvil:2.6.1"
+anvil = "com.squareup.anvil:2.7.0"
 dependencyAnalysis = "com.autonomousapps.dependency-analysis:3.0.4"
 gradle-versions = "com.github.ben-manes.versions:0.53.0"
 kotlin-composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
