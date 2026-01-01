@@ -1,6 +1,6 @@
 [versions]
 agp = "8.13.2"
-android-junit5 = "1.14.0.0"
+android-junit5 = "2.0.0"
 androidx-test = "1.7.0"
 coroutines = "1.10.2"
 dagger = "2.57.2"
