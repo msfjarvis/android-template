@@ -16,9 +16,10 @@ import org.gradle.kotlin.dsl.exclude
 /** Extension function to configure JUnit5 dependencies with the Truth assertion library. */
 fun DependencyHandlerScope.addTestDependencies(project: Project) {
   val libs = project.extensions.getByName("libs") as LibrariesForLibs
-  arrayOf("test", "androidTest", "screenshotTest")
+  arrayOf("test", "screenshotTest")
     .filter { sourceSet -> project.configurations.findByName("${sourceSet}Implementation") != null }
     .forEach { sourceSet ->
+      addProvider("${sourceSet}Implementation", platform(libs.junit.bom))
       addProvider("${sourceSet}Implementation", libs.junit.jupiter.api)
       addProvider<MinimalExternalModuleDependency, ExternalModuleDependency>(
         "${sourceSet}Implementation",
@@ -27,6 +28,7 @@ fun DependencyHandlerScope.addTestDependencies(project: Project) {
         exclude(group = "junit", module = "junit")
       }
       addProvider("${sourceSet}RuntimeOnly", libs.junit.jupiter.engine)
+      addProvider("${sourceSet}RuntimeOnly", libs.junit.platform.launcher)
       addProvider<MinimalExternalModuleDependency, ExternalModuleDependency>(
         "${sourceSet}RuntimeOnly",
         libs.junit.legacy,

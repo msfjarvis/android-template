@@ -6,32 +6,24 @@
  */
 package dev.msfjarvis.gradle
 
-import org.gradle.api.Action
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.testing.Test
 import org.gradle.api.tasks.testing.logging.TestLogEvent
-import org.gradle.jvm.toolchain.JavaLanguageVersion
-import org.gradle.jvm.toolchain.JavaToolchainSpec
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-@Suppress("Unused", "UnstableApiUsage")
+@Suppress("Unused")
 class KotlinCommonPlugin : Plugin<Project> {
 
   override fun apply(project: Project) {
-    if (project.isolated.rootProject == project.isolated) {
-      LintConfig.configureRootProject(project)
-    } else if (project.name != "benchmark") {
-      LintConfig.configureSubProject(project)
-    }
     project.tasks.run {
       withType<KotlinCompile>().configureEach {
         compilerOptions {
-          allWarningsAsErrors.set(project.providers.environmentVariable("CI").isPresent)
+          allWarningsAsErrors.set(true)
           freeCompilerArgs.addAll(ADDITIONAL_COMPILER_ARGS)
-          languageVersion.set(KotlinVersion.KOTLIN_1_9)
+          languageVersion.set(KotlinVersion.KOTLIN_2_3)
         }
       }
       withType<Test>().configureEach {
@@ -48,9 +40,13 @@ class KotlinCommonPlugin : Plugin<Project> {
         "-opt-in=kotlin.RequiresOptIn",
         "-Xjspecify-annotations=strict",
         "-Xtype-enhancement-improvements-strict-mode",
+        "-Xcontext-parameters",
+        // TODO trips in SQLDelight code: https://github.com/sqldelight/sqldelight/issues/6029
+        // "-Xreturn-value-checker=full",
+        "-Xcontext-sensitive-resolution",
+        "-Xdata-flow-based-exhaustiveness",
+        "-Xwhen-expressions=indy",
+        "-Xexplicit-backing-fields",
       )
-
-    val JVM_TOOLCHAIN_ACTION =
-      Action<JavaToolchainSpec> { languageVersion.set(JavaLanguageVersion.of(17)) }
   }
 }
