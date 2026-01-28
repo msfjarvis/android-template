@@ -6,22 +6,32 @@
  */
 package dev.msfjarvis.gradle
 
-import dev.msfjarvis.gradle.KotlinCommonPlugin.Companion.JVM_TOOLCHAIN_ACTION
+import com.android.build.api.dsl.ApplicationExtension
+import com.android.build.api.dsl.LibraryExtension
+import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.tasks.compile.JavaCompile
 import org.gradle.kotlin.dsl.apply
-import org.gradle.kotlin.dsl.getByType
-import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
-import org.jetbrains.kotlin.gradle.plugin.KotlinAndroidPluginWrapper
+import org.gradle.kotlin.dsl.findByType
+import org.gradle.kotlin.dsl.withType
 
 @Suppress("Unused")
 class KotlinAndroidPlugin : Plugin<Project> {
 
   override fun apply(project: Project) {
-    project.pluginManager.run {
-      apply(KotlinAndroidPluginWrapper::class)
-      apply(KotlinCommonPlugin::class)
+    project.pluginManager.run { apply(KotlinCommonPlugin::class) }
+    project.extensions.findByType<LibraryExtension>()?.compileOptions {
+      sourceCompatibility = JavaVersion.VERSION_21
+      targetCompatibility = JavaVersion.VERSION_21
     }
-    project.extensions.getByType<KotlinProjectExtension>().jvmToolchain(JVM_TOOLCHAIN_ACTION)
+    project.extensions.findByType<ApplicationExtension>()?.compileOptions {
+      sourceCompatibility = JavaVersion.VERSION_21
+      targetCompatibility = JavaVersion.VERSION_21
+    }
+    project.tasks.withType<JavaCompile>().configureEach {
+      sourceCompatibility = JavaVersion.VERSION_21.toString()
+      targetCompatibility = JavaVersion.VERSION_21.toString()
+    }
   }
 }

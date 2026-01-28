@@ -9,11 +9,12 @@
 package dev.msfjarvis.gradle
 
 import com.android.build.api.dsl.ApplicationExtension
+import com.android.build.api.dsl.CommonExtension
 import com.android.build.api.dsl.LibraryExtension
 import com.android.build.api.variant.ApplicationAndroidComponentsExtension
+import com.android.build.api.variant.HasAndroidTestBuilder
 import com.android.build.api.variant.HasUnitTestBuilder
 import com.android.build.api.variant.LibraryAndroidComponentsExtension
-import com.android.build.gradle.BaseExtension
 import dev.msfjarvis.gradle.LintConfig.configureLint
 import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.android.AndroidCacheFixPlugin
@@ -28,14 +29,15 @@ class AndroidCommonPlugin : Plugin<Project> {
   override fun apply(project: Project) {
     project.configureSlimTests()
     project.pluginManager.apply(AndroidCacheFixPlugin::class)
-    project.extensions.configure<BaseExtension> {
-      compileSdkVersion(36)
-      defaultConfig {
-        minSdk = 26
-        targetSdk = 36
+    project.extensions.configure<CommonExtension> {
+      compileSdk { version = release(36) }
+      defaultConfig.apply {
+        // Required by Metro, I don't care for this to be more broadly usable at the expense of my
+        // personal development experience.
+        minSdk = 28
       }
 
-      packagingOptions {
+      packaging.apply {
         resources.excludes.add("**/*.version")
         resources.excludes.add("**/*.txt")
         resources.excludes.add("**/*.kotlin_module")
@@ -44,14 +46,31 @@ class AndroidCommonPlugin : Plugin<Project> {
         resources.excludes.add("**/META-INF/LGPL2.1")
       }
 
-      testOptions {
+      testOptions.apply {
         animationsDisabled = true
         unitTests.isReturnDefaultValues = true
+      }
+
+      buildFeatures.buildConfig = true
+
+      buildTypes.configureEach {
+        when (name) {
+          "release" -> {
+            buildConfigField("String", "DEEPLINK_SCHEME", "\"claw\"")
+          }
+          "debug" -> {
+            buildConfigField("String", "DEEPLINK_SCHEME", "\"claw-debug\"")
+          }
+          "internal" -> {
+            buildConfigField("String", "DEEPLINK_SCHEME", "\"claw\"")
+          }
+        }
       }
     }
     project.extensions.findByType<ApplicationExtension>()?.lint?.configureLint(project)
     project.extensions.findByType<LibraryExtension>()?.lint?.configureLint(project)
     val libs = project.extensions.getByName("libs") as LibrariesForLibs
+    project.dependencies.addProvider("lintChecks", libs.android.security.lints)
     project.dependencies.addProvider("lintChecks", libs.slack.compose.lints)
     project.dependencies.addProvider("lintChecks", libs.slack.lints)
   }
@@ -62,20 +81,18 @@ class AndroidCommonPlugin : Plugin<Project> {
     }
     // Disable unit test tasks on the release build type for Android Library projects
     extensions.findByType<LibraryAndroidComponentsExtension>()?.run {
-      beforeVariants(selector().all()) {
-        if (it.name == "debug") return@beforeVariants
-        (it as HasUnitTestBuilder).enableUnitTest = false
-        it.androidTest.enable = false
-      }
+      beforeVariants(selector().withBuildType("release"), ::disableTestsForVariant)
     }
 
     // Disable unit test tasks on the release build type for Android Application projects.
     extensions.findByType<ApplicationAndroidComponentsExtension>()?.run {
-      beforeVariants(selector().all()) {
-        if (it.name == "debug") return@beforeVariants
-        (it as HasUnitTestBuilder).enableUnitTest = false
-        it.androidTest.enable = false
-      }
+      beforeVariants(selector().withBuildType("release"), ::disableTestsForVariant)
     }
+  }
+
+  private fun <T> disableTestsForVariant(variant: T)
+    where T : HasUnitTestBuilder, T : HasAndroidTestBuilder {
+    variant.enableAndroidTest = false
+    variant.enableUnitTest = false
   }
 }

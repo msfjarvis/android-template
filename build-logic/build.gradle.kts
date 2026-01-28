@@ -4,13 +4,17 @@
  * license that can be found in the LICENSE file or at
  * https://opensource.org/licenses/MIT.
  */
+import org.gradle.api.tasks.compile.JavaCompile
+import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmExtension
+
 plugins {
   `kotlin-dsl`
   alias(libs.plugins.android.lint)
   alias(libs.plugins.dependencyAnalysis)
 }
-
-kotlin.jvmToolchain(17)
 
 gradlePlugin {
   plugins {
@@ -38,10 +42,6 @@ gradlePlugin {
       id = "dev.msfjarvis.kotlin-jvm"
       implementationClass = "dev.msfjarvis.gradle.KotlinJvmPlugin"
     }
-    register("kotlin-kapt") {
-      id = "dev.msfjarvis.kotlin-kapt"
-      implementationClass = "dev.msfjarvis.gradle.KotlinKaptPlugin"
-    }
     register("rename-artifacts") {
       id = "dev.msfjarvis.rename-artifacts"
       implementationClass = "dev.msfjarvis.gradle.RenameArtifactsPlugin"
@@ -63,16 +63,24 @@ gradlePlugin {
 
 lint.baseline = project.file("lint-baseline.xml")
 
+extensions.getByType<KotlinJvmExtension>().compilerOptions { jvmTarget.set(JvmTarget.JVM_21) }
+
+tasks.withType<JavaCompile>().configureEach {
+  sourceCompatibility = JavaVersion.VERSION_21.toString()
+  targetCompatibility = JavaVersion.VERSION_21.toString()
+}
+
 dependencies {
   implementation(libs.build.agp)
   implementation(libs.build.cachefix)
   implementation(libs.build.kotlin.gradle)
   implementation(libs.build.semver)
+  implementation(libs.build.sentry)
   implementation(libs.build.spotless)
   implementation(libs.build.vcu)
 
   // Expose the generated version catalog API to the plugin.
   implementation(files(libs::class.java.superclass.protectionDomain.codeSource.location))
 
-  lintChecks(libs.androidx.lint)
+  lintChecks(libs.androidx.lint.gradle)
 }
