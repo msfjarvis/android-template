@@ -52,20 +52,6 @@ class AndroidCommonPlugin : Plugin<Project> {
       }
 
       buildFeatures.buildConfig = true
-
-      buildTypes.configureEach {
-        when (name) {
-          "release" -> {
-            buildConfigField("String", "DEEPLINK_SCHEME", "\"claw\"")
-          }
-          "debug" -> {
-            buildConfigField("String", "DEEPLINK_SCHEME", "\"claw-debug\"")
-          }
-          "internal" -> {
-            buildConfigField("String", "DEEPLINK_SCHEME", "\"claw\"")
-          }
-        }
-      }
     }
     project.extensions.findByType<ApplicationExtension>()?.lint?.configureLint(project)
     project.extensions.findByType<LibraryExtension>()?.lint?.configureLint(project)
