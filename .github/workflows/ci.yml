@@ -19,7 +19,7 @@ jobs:
     runs-on: macos-15
     steps:
     - name: Setup build environment
-      uses: msfjarvis/compose-lobsters/.github/reusable-workflows/setup-gradle@43d1b519014d3ceadc1d75980b0f44c71923fd6f # main
+      uses: msfjarvis/compose-lobsters/.github/reusable-workflows/setup-gradle@c9a22df572462c3f48a320967438b3c461f50c98 # main
       with:
         fetch-depth: 0
         cache-read-only: ${{ github.ref != 'refs/heads/main' }}
