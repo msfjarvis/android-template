@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   check:
-    runs-on: macos-15
+    runs-on: macos-26
     steps:
     - name: Setup build environment
       uses: msfjarvis/compose-lobsters/.github/reusable-workflows/setup-gradle@92977995491be58c339e666b02a7e12e9da1f5c5 # main
@@ -38,7 +38,7 @@ jobs:
           path: '**/build/reports/tests/**'
 
   dependency-review:
-    runs-on: macos-15
+    runs-on: macos-26
     if: "github.event_name == 'push' && github.event.ref != 'refs/heads/main'"
     needs:
       - check
