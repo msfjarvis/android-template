@@ -114,7 +114,7 @@ eithernet = { module = "com.slack.eithernet:eithernet", version.ref = "eithernet
 eithernet-integration-retrofit = { module = "com.slack.eithernet:eithernet-integration-retrofit", version.ref = "eithernet" }
 eithernet-test-fixtures = { module = "com.slack.eithernet:eithernet-test-fixtures", version.ref = "eithernet" }
 haze = { module = "dev.chrisbanes.haze:haze", version.ref = "haze" }
-htmlconverter = "be.digitalia.compose.htmlconverter:htmlconverter:1.1.0"
+htmlconverter = "be.digitalia.compose.htmlconverter:htmlconverter:1.1.1"
 jsoup = "org.jsoup:jsoup:1.22.2"
 # Referenced in build-logic
 #noinspection UnusedVersionCatalogEntry
