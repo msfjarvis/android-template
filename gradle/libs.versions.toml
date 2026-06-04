@@ -8,7 +8,7 @@ collection = "1.6.0"
 compose-animation = "1.11.2"
 compose-foundation = "1.11.2"
 compose-icons = "1.7.8"
-compose-material3 = "1.5.0-alpha20"
+compose-material3 = "1.5.0-alpha21"
 compose-runtime = "1.11.2"
 benchmark = "1.5.0-alpha06"
 compose-ui = "1.11.2"
@@ -73,8 +73,8 @@ androidx-compose-ui-text = { module = "androidx.compose.ui:ui-text", version.ref
 androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose-ui" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose-ui" }
 androidx-compose-ui-unit = { module = "androidx.compose.ui:ui-unit", version.ref = "compose-ui" }
-androidx-core = "androidx.core:core:1.18.0"
-androidx-core-ktx = "androidx.core:core-ktx:1.18.0"
+androidx-core = "androidx.core:core:1.19.0"
+androidx-core-ktx = "androidx.core:core-ktx:1.19.0"
 androidx-core-splashscreen = "androidx.core:core-splashscreen:1.2.0"
 androidx-datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
 androidx-datastore-core = { module = "androidx.datastore:datastore-core", version.ref = "datastore" }
