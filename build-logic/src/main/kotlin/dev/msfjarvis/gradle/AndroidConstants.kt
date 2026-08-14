@@ -4,7 +4,7 @@
  * license that can be found in the LICENSE file or at
  * https://opensource.org/licenses/MIT.
  */
-plugins {
-  id("dev.msfjarvis.versions")
-  alias(libs.plugins.dependencyAnalysis)
-}
+package dev.msfjarvis.gradle
+
+const val COMPILE_SDK = 37
+const val TARGET_SDK = 37

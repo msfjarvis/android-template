@@ -11,6 +11,7 @@ import com.diffplug.gradle.spotless.SpotlessPlugin
 import org.gradle.api.GradleException
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.file.RegularFile
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 
@@ -18,32 +19,33 @@ import org.gradle.kotlin.dsl.configure
 class SpotlessPlugin : Plugin<Project> {
 
   override fun apply(project: Project) {
-    if (project.isolated.rootProject != project.isolated) {
-      throw GradleException("Spotless plugin must only be applied to the root project.")
+    if (project.isolated.rootProject == project.isolated) {
+      throw GradleException("Spotless plugin must only be applied to non-root projects.")
+    }
+    val isolated = project.isolated
+    val rootFile: (String) -> RegularFile = { path ->
+      isolated.rootProject.projectDirectory.file(path)
     }
     project.pluginManager.apply(SpotlessPlugin::class)
     project.extensions.configure<SpotlessExtension> {
       kotlin {
         ktfmt(KTFMT_VERSION).googleStyle()
-        target("**/*.kt")
-        targetExclude("**/build/", "/spotless/")
-        licenseHeaderFile(project.file("spotless/license.kt"))
+        target("src/**/*.kt")
+        licenseHeaderFile(rootFile("spotless/license.kt"))
       }
       kotlinGradle {
         ktfmt(KTFMT_VERSION).googleStyle()
-        target("**/*.kts")
-        targetExclude("**/build/")
-        licenseHeaderFile(project.file("spotless/license.kt"), "import|plugins|@file")
+        target("*.kts")
+        licenseHeaderFile(rootFile("spotless/license.kt"), "import|plugins|@file")
       }
       format("xml") {
-        target("**/*.xml")
-        targetExclude("**/build/", ".idea/", "/spotless/", "**/lint-baseline.xml")
+        target("src/**/*.xml")
         trimTrailingWhitespace()
         leadingTabsToSpaces()
         endWithNewline()
         licenseHeaderFile(
-          project.file("spotless/license.xml"),
-          "<(adaptive-icon|appwidget-provider|data-extraction-rules|full-backup-content|manifest|vector|resources)",
+          rootFile("spotless/license.xml"),
+          "<(adaptive-icon|appwidget-provider|data-extraction-rules|full-backup-content|manifest|network-security-config|vector|resources)",
         )
       }
     }

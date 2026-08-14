@@ -21,15 +21,13 @@ object LintConfig {
     noLines = false
     showAll = true
     explainIssues = true
-    textReport = false
-    xmlReport = false
-    htmlReport = true
-    sarifReport = false
     if (!isJVM) {
       enable += "ComposeM2Api"
       error += "ComposeM2Api"
       // The Lint baseline message changes too frequently for this
       disable += "Aligned16KB"
+      // This is already giving false positives.
+      disable += "ComposeRedundantComposable"
     }
     baseline = project.file("lint-baseline.xml")
     // This is extremely annoying
