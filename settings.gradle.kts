@@ -22,27 +22,10 @@ pluginManagement {
     exclusiveContent {
       forRepository { gradlePluginPortal() }
       filter {
-        includeModule("com.github.ben-manes", "gradle-versions-plugin")
-        includeModule(
-          "com.github.ben-manes.versions",
-          "com.github.ben-manes.versions.gradle.plugin",
-        )
         includeModule("org.gradle.android.cache-fix", "org.gradle.android.cache-fix.gradle.plugin")
         includeModule("gradle.plugin.org.gradle.android", "android-cache-fix-gradle-plugin")
-        includeModule("dev.iurysouza.modulegraph", "dev.iurysouza.modulegraph.gradle.plugin")
-        includeModule("dev.iurysouza", "modulegraph")
-        includeModule(
-          "com.jraska.module.graph.assertion",
-          "com.jraska.module.graph.assertion.gradle.plugin",
-        )
         includeModule("com.gradle", "develocity-gradle-plugin")
         includeModule("com.gradle.develocity", "com.gradle.develocity.gradle.plugin")
-        includeModule("com.jraska.module.graph.assertion", "plugin")
-        includeModule(
-          "org.gradle.toolchains.foojay-resolver-convention",
-          "org.gradle.toolchains.foojay-resolver-convention.gradle.plugin",
-        )
-        includeModule("org.gradle.toolchains", "foojay-resolver")
       }
     }
     includeBuild("build-logic")
@@ -51,7 +34,6 @@ pluginManagement {
 }
 
 plugins {
-  id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
   id("com.gradle.develocity") version "4.5.0"
 }
 

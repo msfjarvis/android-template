@@ -13,7 +13,6 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJvmExtension
 plugins {
   `kotlin-dsl`
   alias(libs.plugins.android.lint)
-  alias(libs.plugins.dependencyAnalysis)
 }
 
 gradlePlugin {
@@ -58,10 +57,6 @@ gradlePlugin {
       id = "dev.msfjarvis.versioning-plugin"
       implementationClass = "dev.msfjarvis.gradle.versioning.VersioningPlugin"
     }
-    register("versions") {
-      id = "dev.msfjarvis.versions"
-      implementationClass = "dev.msfjarvis.gradle.DependencyUpdatesPlugin"
-    }
   }
 }
 
@@ -79,9 +74,7 @@ dependencies {
   implementation(libs.build.cachefix)
   implementation(libs.build.kotlin.gradle)
   implementation(libs.build.semver)
-  implementation(libs.build.sentry)
   implementation(libs.build.spotless)
-  implementation(libs.build.vcu)
 
   // Expose the generated version catalog API to the plugin.
   implementation(files(libs::class.java.superclass.protectionDomain.codeSource.location))

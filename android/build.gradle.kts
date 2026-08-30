@@ -11,9 +11,7 @@ plugins {
   id("dev.msfjarvis.rename-artifacts")
   id("dev.msfjarvis.kotlin-android")
   id("dev.msfjarvis.versioning-plugin")
-  alias(libs.plugins.licensee)
   alias(libs.plugins.kotlin.composeCompiler)
-  alias(libs.plugins.dependencyAnalysis)
 }
 
 android {
@@ -27,9 +25,4 @@ android {
     applicationIdSuffix = ".internal"
     isDebuggable = true
   }
-}
-
-licensee {
-  allow("Apache-2.0")
-  allow("MIT")
 }
