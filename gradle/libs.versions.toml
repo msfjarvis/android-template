@@ -108,7 +108,7 @@ metrox-android = { module = "dev.zacsweers.metro:metrox-android", version.ref = 
 metrox-viewmodel = { module = "dev.zacsweers.metro:metrox-viewmodel", version.ref = "metro" }
 metrox-viewmodel-compose = { module = "dev.zacsweers.metro:metrox-viewmodel-compose", version.ref = "metro" }
 #noinspection UnusedVersionCatalogEntry
-slack-compose-lints = "com.slack.lint.compose:compose-lint-checks:1.6.0"
+slack-compose-lints = "com.slack.lint.compose:compose-lint-checks:1.6.1"
 #noinspection UnusedVersionCatalogEntry
 slack-lints = "com.slack.lint:slack-lint-checks:0.11.1"
 # Referenced in build-logic
